@@ -30,18 +30,25 @@ ComboBoxAutoComplete is a custom WPF UserControl that enhances the functionality
       SelectionChanged="YourSelectionChangedHandler"/>
 
 
-ItemsSource: Bind it to your collection of data that you want to display in the ComboBoxAutoComplete.
+### ItemsSource: 
+- Bind it to your collection of data that you want to display in the ComboBoxAutoComplete.
 
-DisplayMemberPath: Specify the property of each item in the ItemsSource that should be displayed in the ComboBoxAutoComplete.
+### DisplayMemberPath: 
+- Specify the property of each item in the ItemsSource that should be displayed in the ComboBoxAutoComplete.
 
-SelectedValuePath: Specify the property of each item in the ItemsSource that should be used as the selected value.
+### SelectedValuePath: 
+- Specify the property of each item in the ItemsSource that should be used as the selected value.
 
-FilterMode: Choose the filtering mode for the auto-complete feature (AutoCompleteFilterMode.None, AutoCompleteFilterMode.Equals, AutoCompleteFilterMode.Contains, AutoCompleteFilterMode.StartsWith).
+### FilterMode: 
+- Choose the filtering mode for the auto-complete feature (AutoCompleteFilterMode.None, AutoCompleteFilterMode.Equals, AutoCompleteFilterMode.Contains, AutoCompleteFilterMode.StartsWith).
 
-FontSize: Set the font size of the ComboBoxAutoComplete.
+### FontSize: 
+- Set the font size of the ComboBoxAutoComplete.
 
-FontWeight: Set the font weight of the ComboBoxAutoComplete.
+### FontWeight: 
+- Set the font weight of the ComboBoxAutoComplete.
 
-SelectionChanged: Handle this event to perform actions when the selection in the ComboBoxAutoComplete changes.
+### SelectionChanged: 
+- Handle this event to perform actions when the selection in the ComboBoxAutoComplete changes.
 
-Customize the control by adjusting properties like ItemsSource, DisplayMemberPath, SelectedValuePath, FilterMode, FontSize, FontWeight, and handle the SelectionChanged event.
+- Customize the control by adjusting properties like ItemsSource, DisplayMemberPath, SelectedValuePath, FilterMode, FontSize, FontWeight, and handle the SelectionChanged event.
