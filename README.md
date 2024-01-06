@@ -30,7 +30,6 @@ ComboBoxAutoComplete is a custom WPF UserControl that enhances the functionality
       FontWeight="YourFontWeight"
       SelectionChanged="YourSelectionChangedHandler"/>
 
-
 ### ItemsSource: 
 - Bind it to your collection of data that you want to display in the ComboBoxAutoComplete.
 
@@ -60,3 +59,23 @@ ComboBoxAutoComplete is a custom WPF UserControl that enhances the functionality
 (https://www.youtube.com/watch?v=yxe3U_M55ts&t=406s)
 
 
+
+or 
+
+<dx:ThemedWindow x:Class="ULTRA_ERP_WPF.Modules.Views.DoubleEntryTransactionWindowDialog"
+				 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+				 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+				 xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+				 xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+				 xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+				 xmlns:ssoft="clr-namespace:SaeediSoftWpfUiControls;assembly=SaeediSoftWpfUiControls"
+				 xmlns:local='clr-namespace:ULTRA_ERP_WPF.Modules.Views'
+				 Title="Account Transactions"
+				 Width="1200"
+				 Height="750"
+				 FontSize="20"
+				 Loaded="ThemedWindow_Loaded"
+				 Closing='ThemedWindow_Closing'
+				 PreviewKeyDown="ThemedWindow_PreviewKeyDown"
+				 WindowStartupLocation="CenterScreen"
+				 WindowState="Maximized">
