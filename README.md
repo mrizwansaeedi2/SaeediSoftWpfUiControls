@@ -88,3 +88,56 @@ or
 	FilterMode="Contains"
 	FontSize="12"
 	PreviewKeyDown="fields_PreviewKeyDown" />
+
+C# Code 
+   private async void loadAccountsToUi()
+        {
+            ObservableCollection<SearchModel> dataList = new() { };
+            ObservableCollection<SearchModel> dataList2 = new() { };
+            ObservableCollection<SearchModel> dataListLineItems = new() { };
+            var accounts = _service.Account.GetSubAccounts();
+            accountListForSelection = accounts;
+            var lineItems = await _service.LineItem.GetAll().Where(m => m.IsDeleted == false).ToListAsync();
+            lineItemsListForSelection = lineItems;
+
+            foreach (var item in accounts)
+            {
+                dataList.Add(new SearchModel()
+                {
+                    DisplayField = item.Title,
+                    ValueFieldGuidId = item.GuidId,
+                    StringFeild1 = item.Title,
+                    StringFeild2 = item.DiaryNumber,
+                });
+            }
+
+            foreach (var item in accounts)
+            {
+                dataList2.Add(new SearchModel()
+                {
+                    DisplayField = item.Title,
+                    ValueFieldGuidId = item.GuidId,
+                    StringFeild1 = item.Title,
+                    StringFeild2 = item.DiaryNumber,
+                });
+            }
+
+            foreach (var item in lineItems)
+            {
+                dataListLineItems.Add(new SearchModel()
+                {
+                    DisplayField = item.ItemName,
+                    ValueFieldGuidId = item.GuidId,
+                    StringFeild1 = item.ItemName,
+                });
+            }
+
+            ucFromAccount.ItemsSource = dataList;
+            ucToAccount.ItemsSource = dataList2;
+            ucLineItem.ItemsSource = dataListLineItems;
+
+            cboxLinkedAccounts.ItemsSource = _service.Account.GetCommonCashSubAccounts();
+            await Task.Delay(300);
+            cboxLinkedAccounts.SelectedIndex = 0;
+        }
+
