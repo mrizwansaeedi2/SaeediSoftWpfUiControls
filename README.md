@@ -10,7 +10,7 @@ ComboBoxAutoComplete is a custom WPF UserControl that enhances the functionality
 ## Getting Started
 
 ### Prerequisites
-- .NET Framework
+- .NET Core 5+
 - Visual Studio (or any compatible IDE)
 
 ### Installation
