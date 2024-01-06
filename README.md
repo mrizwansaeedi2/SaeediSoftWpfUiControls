@@ -52,3 +52,5 @@ ComboBoxAutoComplete is a custom WPF UserControl that enhances the functionality
 - Handle this event to perform actions when the selection in the ComboBoxAutoComplete changes.
 
 - Customize the control by adjusting properties like ItemsSource, DisplayMemberPath, SelectedValuePath, FilterMode, FontSize, FontWeight, and handle the SelectionChanged event.
+![ComboBoxAutoComplete Snapshot](snapshots/1.png)
+
