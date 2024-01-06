@@ -82,9 +82,9 @@ or
     WindowState="Maximized">
 
 <ssoft:ComboBoxAutoComplete x:Name="ucFromAccount"
-															Width="134"
-															Height="30"
-															DisplayMemberPath="DisplayField"
-															FilterMode="Contains"
-															FontSize="12"
-															PreviewKeyDown="fields_PreviewKeyDown" />
+	Width="134"
+	Height="30"
+	DisplayMemberPath="DisplayField"
+	FilterMode="Contains"
+	FontSize="12"
+	PreviewKeyDown="fields_PreviewKeyDown" />
