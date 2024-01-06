@@ -89,7 +89,7 @@ or
 	FontSize="12"
 	PreviewKeyDown="fields_PreviewKeyDown" />
 
-C# Code 
+C# Code To Use More Than One Controls In Same Page 
    private async void loadAccountsToUi()
         {
             ObservableCollection<SearchModel> dataList = new() { };
