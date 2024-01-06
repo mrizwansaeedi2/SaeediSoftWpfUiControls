@@ -16,6 +16,7 @@ ComboBoxAutoComplete is a custom WPF UserControl that enhances the functionality
 ### Installation
 1. Clone the repository.
 2. Add the `ComboBoxAutoComplete` control to your WPF project.
+3. Or Use Sample.7z , Extract It and use it as sample
 
 ### Usage
 1. Include the `ComboBoxAutoComplete` control in your XAML.
