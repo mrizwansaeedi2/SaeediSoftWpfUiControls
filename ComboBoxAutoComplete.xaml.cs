@@ -33,6 +33,7 @@ namespace SaeediSoftWpfUiControls
     public partial class ComboBoxAutoComplete : UserControl
     {
         public ComboBox Ctrl;
+
         public static readonly DependencyProperty ItemsSourceProperty =
             DependencyProperty.Register("ItemsSource", typeof(ObservableCollection<SearchModel>), typeof(ComboBoxAutoComplete), new PropertyMetadata(null));
 
@@ -91,11 +92,41 @@ namespace SaeediSoftWpfUiControls
             set { SetValue(FontWeightProperty, value); }
         }
 
-        // ----------------------------------
+        // ------------00----------------------
+        public static readonly DependencyProperty ShowBorderProperty =
+    DependencyProperty.Register("ShowBorder", typeof(bool), typeof(ComboBoxAutoComplete), new PropertyMetadata(false, OnShowBorderChanged));
+
+        public bool ShowBorder
+        {
+            get { return (bool)GetValue(ShowBorderProperty); }
+            set { SetValue(ShowBorderProperty, value); }
+        }
+
+        // ------------00----------------------
+
+        private static void OnShowBorderChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var control = d as ComboBoxAutoComplete;
+            control?.UpdateBorder();
+        }
+
+        private void UpdateBorder()
+        {
+            if (ShowBorder)
+            {
+                border.BorderBrush = System.Windows.Media.Brushes.Black;
+                border.BorderThickness = new Thickness(1);
+            }
+            else
+            {
+                border.BorderBrush = System.Windows.Media.Brushes.Transparent;
+                border.BorderThickness = new Thickness(0);
+            }
+        }
+
 
         public static readonly RoutedEvent SelectionChangedEvent = EventManager.RegisterRoutedEvent(
     "SelectionChanged", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(ComboBoxAutoComplete));
-
 
         public static readonly DependencyProperty SelectionChangedProperty =
     DependencyProperty.Register("SelectionChanged", typeof(RoutedEventHandler), typeof(ComboBoxAutoComplete));
@@ -105,20 +136,25 @@ namespace SaeediSoftWpfUiControls
             add { AddHandler(SelectionChangedEvent, value); }
             remove { RemoveHandler(SelectionChangedEvent, value); }
         }
+
         private void cmbAutoComplete_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+
+            RoutedEventArgs newEventArgs = new RoutedEventArgs(ComboBoxAutoComplete.SelectionChangedEvent);
+            RaiseEvent(newEventArgs);
+
             // Raise the SelectionChanged dependency property event
-            RoutedEventHandler handler = (RoutedEventHandler)GetValue(SelectionChangedProperty);
-            if (handler != null)
-            {
-                handler.Invoke(this, e);
-            }
+            //RoutedEventHandler handler = (RoutedEventHandler)GetValue(SelectionChangedProperty);
+            //if (handler != null)
+            //{
+            //    handler.Invoke(this, e);
+            //}
 
             // You can also handle the selection change event here as before.
             // ...
         }
-        //public event EventHandler<SelectionChangedEventArgs> SelectionChanged;
 
+        //public event EventHandler<SelectionChangedEventArgs> SelectionChanged;
 
         public ComboBoxAutoComplete()
         {
@@ -148,20 +184,24 @@ namespace SaeediSoftWpfUiControls
                         if (lineItem.intField1.HasValue && lineItem.intField1.Value.ToString().Equals(searchText))
                         {
                             return true;
-                        } else if (lineItem.intField2.HasValue && lineItem.intField2.Value.ToString().Equals(searchText))
+                        }
+                        else if (lineItem.intField2.HasValue && lineItem.intField2.Value.ToString().Equals(searchText))
                         {
                             return true;
-                        } else
+                        }
+                        else
                         {
                             if (FilterMode == AutoCompleteFilterMode.Equals)
                             {
                                 return (lineItem.StringFeild1 != null && lineItem.StringFeild1.Equals(searchText)) ||
                                    (lineItem.StringFeild2 != null && lineItem.StringFeild2.Equals(searchText));
-                            } else if (FilterMode == AutoCompleteFilterMode.Contains)
+                            }
+                            else if (FilterMode == AutoCompleteFilterMode.Contains)
                             {
                                 return (lineItem.StringFeild1 != null && lineItem.StringFeild1.IndexOf(searchText, StringComparison.OrdinalIgnoreCase) >= 0) ||
                                    (lineItem.StringFeild2 != null && lineItem.StringFeild2.IndexOf(searchText, StringComparison.OrdinalIgnoreCase) >= 0);
-                            } else if (FilterMode == AutoCompleteFilterMode.StartsWith)
+                            }
+                            else if (FilterMode == AutoCompleteFilterMode.StartsWith)
                             {
                                 return (lineItem.StringFeild1 != null && lineItem.StringFeild1.StartsWith(searchText, StringComparison.OrdinalIgnoreCase)) ||
                                    (lineItem.StringFeild2 != null && lineItem.StringFeild2.StartsWith(searchText, StringComparison.OrdinalIgnoreCase));
@@ -173,7 +213,8 @@ namespace SaeediSoftWpfUiControls
                     }
                     return false;
                 };
-            } else
+            }
+            else
             {
                 view.Filter = null;
                 cmbAutoComplete.IsDropDownOpen = false;
@@ -187,7 +228,8 @@ namespace SaeediSoftWpfUiControls
                 //AddToCart();
                 e.Handled = true;
                 return;
-            } else if (e.Key == Key.Back)
+            }
+            else if (e.Key == Key.Back)
             {
                 if (string.IsNullOrEmpty(cmbAutoComplete.Text))
                 {
@@ -195,10 +237,11 @@ namespace SaeediSoftWpfUiControls
                     cmbAutoComplete.IsDropDownOpen = false;
                     return;
                 }
-            } else if (e.Key == Key.Escape)
+            }
+            else if (e.Key == Key.Escape)
             {
-                cmbAutoComplete.SelectedItem = null;
                 cmbAutoComplete.IsDropDownOpen = false;
+                cmbAutoComplete.SelectedItem = null;
                 return;
             }
 
@@ -228,7 +271,9 @@ namespace SaeediSoftWpfUiControls
                 }
             }
         }
+
         private Storyboard fadeInStoryboard;
+
         private void cmbAutoComplete_ContextMenuOpening(object sender, ContextMenuEventArgs e)
         {
             if (cmbAutoComplete.IsDropDownOpen)
@@ -241,6 +286,8 @@ namespace SaeediSoftWpfUiControls
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             fadeInStoryboard = (Storyboard)FindResource("FadeInAnimation");
+            Ctrl = cmbAutoComplete;
+            UpdateBorder();  // Ensure the border is updated when the control is loaded
         }
 
         private void cmbAutoComplete_Loaded(object sender, RoutedEventArgs e)
@@ -250,14 +297,20 @@ namespace SaeediSoftWpfUiControls
 
         private void cmbAutoComplete_GotFocus(object sender, RoutedEventArgs e)
         {
-            border.BorderBrush = System.Windows.Media.Brushes.Yellow;
-            border.BorderThickness = new Thickness(1);
+            if (ShowBorder)
+            {
+                border.BorderBrush = System.Windows.Media.Brushes.Yellow;
+                border.BorderThickness = new Thickness(1);
+            }
         }
 
         private void cmbAutoComplete_LostFocus(object sender, RoutedEventArgs e)
         {
-            border.BorderBrush = System.Windows.Media.Brushes.Black;
-            border.BorderThickness = new Thickness(.5);
+            if (ShowBorder)
+            {
+                border.BorderBrush = System.Windows.Media.Brushes.Black;
+                border.BorderThickness = new Thickness(.5);
+            }
         }
     }
 }

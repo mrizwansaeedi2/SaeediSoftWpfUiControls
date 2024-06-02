@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace SaeediSoftWpfUiControls.Data
+﻿namespace SaeediSoftWpfUiControls.Data
 {
     // When adding to this enum, please update the OnFilterModePropertyChanged
     // in the AutoCompleteBox class that is used for validation.
