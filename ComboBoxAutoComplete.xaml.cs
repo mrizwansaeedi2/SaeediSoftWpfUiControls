@@ -46,6 +46,15 @@ namespace SaeediSoftWpfUiControls
         public static readonly DependencyProperty DisplayMemberPathProperty =
            DependencyProperty.Register("DisplayMemberPath", typeof(string), typeof(ComboBoxAutoComplete), new PropertyMetadata(string.Empty));
 
+        public static readonly DependencyProperty SelectedItemProperty =
+           DependencyProperty.Register("SelectedItem", typeof(object), typeof(ComboBoxAutoComplete), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+
+        public object SelectedItem
+        {
+            get { return GetValue(SelectedItemProperty); }
+            set { SetValue(SelectedItemProperty, value); }
+        }
+
         public string DisplayMemberPath
         {
             get { return (string)GetValue(DisplayMemberPathProperty); }
@@ -137,12 +146,14 @@ namespace SaeediSoftWpfUiControls
             remove { RemoveHandler(SelectionChangedEvent, value); }
         }
 
+   
+
         private void cmbAutoComplete_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
-            RoutedEventArgs newEventArgs = new RoutedEventArgs(ComboBoxAutoComplete.SelectionChangedEvent);
-            RaiseEvent(newEventArgs);
-
+            //RoutedEventArgs newEventArgs = new RoutedEventArgs(ComboBoxAutoComplete.SelectionChangedEvent);
+            // RaiseEvent(newEventArgs);
+            SelectedItem = cmbAutoComplete.SelectedItem;
             // Raise the SelectionChanged dependency property event
             //RoutedEventHandler handler = (RoutedEventHandler)GetValue(SelectionChangedProperty);
             //if (handler != null)

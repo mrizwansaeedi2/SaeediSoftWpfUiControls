@@ -42,7 +42,8 @@
                   PreviewKeyDown="cbox_PreviewKeyDown"
                   PreviewTextInput="cbox_PreviewTextInput"
                   SelectionChanged='cmbAutoComplete_SelectionChanged'
-                  SelectedValuePath="{Binding SelectedValuePath, RelativeSource={RelativeSource AncestorType=UserControl}}"
+				  SelectedItem="{Binding SelectedItem, RelativeSource={RelativeSource AncestorType=UserControl}}"
+				  SelectedValuePath="{Binding SelectedValuePath, RelativeSource={RelativeSource AncestorType=UserControl}}"
                   >
             <!--  Adding the Visual State Manager (VSM) for Focus States  -->
         </ComboBox>
